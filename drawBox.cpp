@@ -33,7 +33,7 @@ void drawBox( struct box *face )
 
     glColor3ub(200,10,100);
     glTranslatef(0.0,0.0,0.0);
-    glutSolidCone(1.0,3.0,50,50);
+    //glutSolidCone(1.0,3.0,50,50);
 
     glPopMatrix();
 
@@ -59,7 +59,7 @@ void drawBox( struct box *face )
 
     glColor3ub(200,10,100);
     glTranslatef(0.0,0.0,1.0);
-    glutSolidSphere(1.0,50,50);
+    //glutSolidSphere(1.0,50,50);
     
     glPopMatrix();
 

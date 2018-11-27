@@ -27,8 +27,8 @@ void display(void)
 	gluLookAt (4.0, 4.0, 4.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0);
 
    /* Draw a coordinate axis */
-
-   glClear(GL_COLOR_BUFFER_BIT );
+	glEnable(GL_DEPTH_TEST);
+   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
    drawAxes(5);
    drawBox(&faces[0]);
