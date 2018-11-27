@@ -10,7 +10,7 @@
 void display(void)
 {
 
-   struct box faces[6];
+   struct box faces[7];
    
    float *M;
    int i, j;

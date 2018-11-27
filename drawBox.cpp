@@ -12,9 +12,9 @@ void drawBox( struct box *face )
     glPolygonMode(GL_BACK, GL_FILL);
 
     glPushMatrix();
-    glTranslatef(0.0,2.0,0.0);
+    //glTranslatef(0.0,2.0,0.0);
 
-    for(j=0;j<6;j++)
+    for(j=0;j<7;j++)
     {
 
         glColor3f(face[j].color.red,
@@ -22,7 +22,7 @@ void drawBox( struct box *face )
                   face[j].color.blue);
 
         glBegin(GL_POLYGON);
-        for (i=0;i<4;i++)
+        for (i=0;i<5;i++)
         {
             glVertex3f(face[j].point[i].x,
                        face[j].point[i].y,
@@ -36,7 +36,7 @@ void drawBox( struct box *face )
     //glutSolidCone(1.0,3.0,50,50);
 
     glPopMatrix();
-
+/*
     glPushMatrix();
     glTranslatef(0.0,-2.0,0.0);
 
@@ -62,7 +62,7 @@ void drawBox( struct box *face )
     //glutSolidSphere(1.0,50,50);
     
     glPopMatrix();
-
+*/
 }
 
 #endif

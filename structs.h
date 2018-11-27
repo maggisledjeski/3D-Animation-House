@@ -15,7 +15,7 @@ typedef struct colortype {
 } colortype;
 
 typedef struct box {
-	vertex point[4];
+	vertex point[5];
 	colortype color;	
 } box;
 
