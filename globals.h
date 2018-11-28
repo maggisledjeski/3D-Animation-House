@@ -8,6 +8,8 @@
 //
  extern const int WINDOW_HEIGHT;
  extern const int WINDOW_WIDTH;
-
+int DRAWAXIS = 0;
+//int DRAWSPHERE = 0;
+	
 #endif
 

@@ -4,12 +4,12 @@
 #include <stdio.h>
 #include "includes.h"
 #include "structs.h"
-
+//#include "globals.h"
 #include "prototypes.h"
 
 void display(void)
 {
-
+	extern int DRAWAXIS;
    struct box faces[7];
    
    float *M;
@@ -30,7 +30,7 @@ void display(void)
 	glEnable(GL_DEPTH_TEST);
    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-   drawAxes(5);
+   if(DRAWAXIS) drawAxes(5);
    drawBox(&faces[0]);
 
    glFlush();
