@@ -17,6 +17,7 @@ void onSign(int msg);
 void onFill(int msg);
 void drawFill(struct box *face);
 void keyboard(unsigned char key, int x, int y);
+void drawString(GLuint x, GLuint y, GLuint z, void *font, const char* string);
 void createMenu(void);
 #endif
 

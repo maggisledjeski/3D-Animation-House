@@ -52,10 +52,24 @@ void display(void)
 
 }
 
+void drawString(GLuint x, GLuint y, GLuint z, void *font, const char* string)
+{
+	const char *i;
+	glColor3f (1.0, 1.0, 1.0);
+	glRasterPos3i(x, y, z);
+	for(i = string; *i != '\0'; i++)
+	{
+		glutBitmapCharacter(font, *i);		
+	}
+
+}
+		
 void drawSign()
 {
 	/*draws the sign if the menu is clicked*/
-	cout << "sign will be drawn" << endl;
+	char charString[10];
+	sprintf(charString, "Hello World!");
+	drawString(1, 1, 1, GLUT_BITMAP_HELVETICA_18, charString);
 }
 
 void drawFill(struct box *face)

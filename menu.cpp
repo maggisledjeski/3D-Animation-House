@@ -50,7 +50,15 @@ void menuAction(int msg)
     /*reverts to original house and camera*/
     if(msg == 1)
     {
-        cout << "reverts to original house and camera" << endl;
+        extern int DRAWAXIS;
+		extern int DRAWP;
+		extern int DRAWSIGN;
+		extern int DRAWFILL;
+		
+		DRAWAXIS = 0;
+		DRAWP = 0;
+		DRAWSIGN = 0;
+		DRAWFILL = 0;
     }
 }
 
