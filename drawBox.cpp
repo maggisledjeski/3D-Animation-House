@@ -8,8 +8,8 @@ void drawBox( struct box *face )
 {
     int i, j;
 
-    //glPolygonMode(GL_FRONT, GL_FILL);
-    //glPolygonMode(GL_BACK, GL_FILL);
+    glPolygonMode(GL_FRONT, GL_FILL);
+    glPolygonMode(GL_BACK, GL_FILL);
 
     glPushMatrix();
 
@@ -20,7 +20,7 @@ void drawBox( struct box *face )
                   face[j].color.green,
                   face[j].color.blue);
 
-        glBegin(GL_LINE_LOOP);//POLYGON);
+        glBegin(GL_LINE_LOOP);
         for (i=0;i<5;i++)
         {
             glVertex3f(face[j].point[i].x,

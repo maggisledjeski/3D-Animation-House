@@ -15,7 +15,7 @@ void onPerspective(int msg);
 void drawSign(void);
 void onSign(int msg);
 void onFill(int msg);
-void drawFill(void);
+void drawFill(struct box *face);
 void keyboard(unsigned char key, int x, int y);
 void createMenu(void);
 #endif
