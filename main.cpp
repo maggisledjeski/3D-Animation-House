@@ -16,26 +16,12 @@ int main(int argc, char** argv)
    glutInitWindowPosition (100, 100);
    glutCreateWindow (argv[0]);
    init ();
-   glutDisplayFunc(display); 
-   glutReshapeFunc(reshape);
-   
-/*menu stuff goes here*/
-	/*axis menu*/
-	int axis = glutCreateMenu(onAxis);
-    glutAddMenuEntry("On", 1);
-    glutAddMenuEntry("Off", 2);
-
-	/*create menu*/
-	int menu = glutCreateMenu(doNothing);
-    glutAddSubMenu("Axes", axis);
-    //glutAddSubMenu("Sphere", sphere);
-	glutAttachMenu(GLUT_MIDDLE_BUTTON);
-	
+	createMenu();
+   	glutKeyboardFunc(keyboard);
+	glutDisplayFunc(display); 
+   glutReshapeFunc(reshape);	
 	glutMainLoop();
    return 0;
-}
-void doNothing(int msg)
-{
 }
 
 #endif

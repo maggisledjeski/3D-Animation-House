@@ -10,6 +10,8 @@
 void display(void)
 {
 	extern int DRAWAXIS;
+	extern int DRAWSIGN;
+	extern int DRAWFILL;
    struct box faces[7];
    
    float *M;
@@ -30,12 +32,49 @@ void display(void)
 	glEnable(GL_DEPTH_TEST);
    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-   if(DRAWAXIS) drawAxes(5);
-   drawBox(&faces[0]);
+   /*draw menu items*/
+	if(DRAWAXIS)
+	{
+		 drawAxes(5);
+	}
+	if(DRAWSIGN)
+	{
+		drawSign();
+	}	
+   	if(DRAWFILL)
+	{
+		drawFill();
+	}
+	drawBox(&faces[0]);
 
    glFlush();
 
 }
 
+void drawSign()
+{
+	/*draws the sign if the menu is clicked*/
+	cout << "sign will be drawn" << endl;
+}
+
+void drawFill()
+{
+	/*draws the house filled*/
+	cout << "filled house will be drawn" << endl;
+}
+
+void onSign(int msg)
+{
+	extern int DRAWSIGN;
+	switch (msg) {
+        case 1:
+            DRAWSIGN = 1;
+            break;
+        case 2:
+            DRAWSIGN = 0;
+            break;
+    }
+    glutPostRedisplay();
+}
 #endif
 

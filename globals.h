@@ -9,7 +9,8 @@
  extern const int WINDOW_HEIGHT;
  extern const int WINDOW_WIDTH;
 int DRAWAXIS = 0;
-//int DRAWSPHERE = 0;
-	
+int DRAWP = 0;
+int DRAWSIGN = 0;	
+int DRAWFILL = 0;
 #endif
 

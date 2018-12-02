@@ -9,5 +9,7 @@
  #include <GL/glu.h>
  #include <GL/glut.h>
 #include <string.h>
- #endif
+#include <iostream>
+using namespace std;
+#endif
 

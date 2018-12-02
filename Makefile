@@ -2,7 +2,7 @@ CC = g++
 CFLAGS = -O
 LDLIBS =  -lglut -lGL -lGLU -lm
 HEADERS = includes.h structs.h globals.h constants.h prototypes.h
-OBJS = init.o defineBox.o drawBox.o drawAxes.o reshape.o display.o  
+OBJS = init.o defineBox.o drawBox.o drawAxes.o reshape.o display.o keyboard.o menu.o
 
 run :	main.o $(OBJS) 
 	$(CC) $(CFLAGS) main.o $(OBJS) -o run $(LDLIBS)
@@ -28,6 +28,11 @@ reshape.o : reshape.cpp $(HEADERS)
 display.o : display.cpp $(HEADERS)
 	$(CC) $(CFLAGS) display.cpp -c
 
+keyboard.o : keyboard.cpp $(HEADERS)
+	$(CC) $(CFLAGS) keyboard.cpp -c
+
+menu.o : menu.cpp $(HEADERS)
+	$(CC) $(CFLAGS) menu.cpp -c
 clean:
 	rm *.o
 
