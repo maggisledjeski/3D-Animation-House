@@ -23,7 +23,7 @@ void defineBox( box *face )
 	face[0].point[3].z =  0.0;
 	face[0].point[3].w =  1.0;
 
-	face[0].point[4].x =  1.0;
+	face[0].point[4].x = -1.0;
     face[0].point[4].y = -1.0;
     face[0].point[4].z =  0.0;
     face[0].point[4].w =  1.0;
@@ -45,7 +45,7 @@ void defineBox( box *face )
 	face[1].point[3].z =  0.0;
 	face[1].point[3].w =  1.0;
 
-	face[1].point[4].x =  1.0;
+	face[1].point[4].x = -1.0;
     face[1].point[4].y = -1.0;
     face[1].point[4].z =  0.0;
     face[1].point[4].w =  1.0;
@@ -67,7 +67,7 @@ void defineBox( box *face )
 	face[2].point[3].z =  0.0;
 	face[2].point[3].w =  1.0;
 	
-	face[2].point[4].x =  1.0;
+	face[2].point[4].x = -1.0;
     face[2].point[4].y =  1.0;
     face[2].point[4].z =  0.0;
     face[2].point[4].w =  1.0;
@@ -89,7 +89,7 @@ void defineBox( box *face )
 
 	face[3].point[3].x = -1.0;
     face[3].point[3].y =  1.0;
-	face[3].point[3].z =  0.0;
+	face[3].point[3].z =  1.0;
 	face[3].point[3].w =  1.0;
 /*top of house*/
 	face[3].point[4].x = -1.0;
@@ -109,8 +109,8 @@ void defineBox( box *face )
 	face[4].point[1].w =  1.0;
 /*top of house*/	
 	face[4].point[2].x =  1.0;
-    face[4].point[2].y =  0.0;//0.15;
-	face[4].point[2].z =  1.5;//1.6;//7;
+    face[4].point[2].y =  0.0;
+	face[4].point[2].z =  1.5;
 	face[4].point[2].w =  1.0;
 	
 	face[4].point[3].x =  1.0;
