@@ -51,25 +51,26 @@ void display(void)
    glFlush();
 
 }
-
-void drawString(GLuint x, GLuint y, GLuint z, void *font, const char* string)
-{
-	const char *i;
-	glColor3f (1.0, 1.0, 1.0);
-	glRasterPos3i(x, y, z);
-	for(i = string; *i != '\0'; i++)
-	{
-		glutBitmapCharacter(font, *i);		
-	}
-
-}
 		
 void drawSign()
 {
 	/*draws the sign if the menu is clicked*/
-	char charString[10];
-	sprintf(charString, "Hello World!");
-	drawString(1, 1, 1, GLUT_BITMAP_HELVETICA_18, charString);
+	char charString[] = "Hello World!";
+	void *font = GLUT_STROKE_ROMAN;
+
+	/*add the lettering to the sign*/
+	glPushMatrix();
+    glTranslatef(-0.2, 0.2, 2.75);
+    glRotatef(90.0, 0.0, 0.0, 1.0);
+    glRotatef(90.0, 1.0, 0.0, 0.0);
+    glScalef(0.002,0.002,0.002);
+    int len = (int) strlen(charString);
+    int i;
+	for (i = 0; i < len; i++) {
+        glutStrokeCharacter(font, charString[i]);
+    }
+    glPopMatrix();
+
 }
 
 void drawFill(struct box *face)

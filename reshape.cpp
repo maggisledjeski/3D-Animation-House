@@ -23,13 +23,20 @@ void reshape (int w, int h)
 		glFrustum ( l, r, b, t, n, f);
 		cout << "frustum, 0" << endl;
    	
-	} else if( DRAWP == 1)
+	} else if(DRAWP == 1)
 	{
 		aspectRatio = (r - l)/(t - b);
     	theta = atan((t/fabs(n)))*2;
     	theta = theta *(180/PI);
     	gluPerspective(theta, aspectRatio, n, f);
 		cout << "perspective, 1" << endl;
+	} else if(DRAWP == 2)
+	{
+		glOrtho(l, r, b, t, n, f);
+		cout << "glOrtho" << endl;
+	} else if(DRAWP == 3)
+	{
+		/*custom input from user*/
 	}
 	glMatrixMode (GL_MODELVIEW);
 }
@@ -39,13 +46,16 @@ void onPerspective(int msg)
     extern int DRAWP;
     switch (msg) {
         case 1:
-            DRAWP = 1;
+            DRAWP = 0;
             break;
         case 2:
-            DRAWP = 0;
+            DRAWP = 1;
             break;
 		case 3:
 			DRAWP = 2;
+			break;
+		case 4:
+			DRAWP = 3;
 			break;
 	
     }

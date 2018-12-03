@@ -15,7 +15,8 @@ void createMenu()
 
     /*perspective submenu*/
     int perspective = glutCreateMenu(onPerspective);
-    glutAddMenuEntry("gluPerspective", 1);
+    glutAddMenuEntry("glFrustum", 0);
+	glutAddMenuEntry("gluPerspective", 1);
     glutAddMenuEntry("glOrtho", 2);
     glutAddMenuEntry("custom", 3);
 
