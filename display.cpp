@@ -13,7 +13,9 @@ void display(void)
 	extern int DRAWSIGN;
 	extern int DRAWFILL;
    struct box faces[7];
-   
+	extern float spinX, spinY, spinZ;   
+
+
    float *M;
    int i, j;
    
@@ -32,6 +34,9 @@ void display(void)
 	glEnable(GL_DEPTH_TEST);
    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+	glRotatef(spinX, 1.0, 0.0, 0.0);
+	glRotatef(spinY, 0.0, 1.0, 0.0);
+	glRotatef(spinZ, 0.0, 0.0, 1.0);
    /*draw menu items*/
 	if(DRAWAXIS)
 	{
@@ -48,8 +53,9 @@ void display(void)
 	{
 		drawBox(&faces[0]);
 	}
-   glFlush();
 
+    glFlush();
+	glutSwapBuffers();
 }
 		
 void drawSign()
@@ -60,10 +66,10 @@ void drawSign()
 
 	/*add the lettering to the sign*/
 	glPushMatrix();
-    glTranslatef(-0.2, 0.2, 2.75);
-    glRotatef(90.0, 0.0, 0.0, 1.0);
-    glRotatef(90.0, 1.0, 0.0, 0.0);
-    glScalef(0.002,0.002,0.002);
+    glTranslatef(1.0, 1.0, 1.0);
+    glRotatef(180.0, 0.0, 0.0, 1.0);
+    glRotatef(45.0, 1.0, 0.0, 0.0);
+	glScalef(0.002,0.002,0.002);
     int len = (int) strlen(charString);
     int i;
 	for (i = 0; i < len; i++) {
@@ -76,6 +82,10 @@ void drawSign()
 void drawFill(struct box *face)
 {
 	/*draws the house filled*/
+	extern float spinX;
+    extern float spinY;
+    extern float spinZ;
+    	
 	int i, j;
 
     glPolygonMode(GL_FRONT, GL_FILL);
@@ -120,5 +130,34 @@ void onSign(int msg)
     }
     glutPostRedisplay();
 }
+
+void spinDisplay(void)
+{
+	extern float spinX;
+	extern float spinY;
+	extern float spinZ;
+	extern float deltaSpinX;
+	extern float deltaSpinY;
+	extern float deltaSpinZ;
+
+	spinX = spinX + deltaSpinX;
+	if(spinX > 360.0)
+	{
+		spinX = spinX - 360.0;
+	}
+	spinY = spinY + deltaSpinY;
+    if(spinY > 360.0)
+    {
+        spinY = spinY - 360.0;
+    }
+	spinZ = spinZ + deltaSpinZ;
+    if(spinZ > 360.0)
+    {
+        spinZ = spinZ - 360.0;
+    }
+
+	glutPostRedisplay();
+}
+
 #endif
 

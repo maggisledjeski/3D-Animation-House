@@ -38,7 +38,7 @@ void createMenu()
     glutAddSubMenu("Axes", axis);
     glutAddSubMenu("Sign", sign);
     glutAddMenuEntry("Exit", 0);
-    glutAttachMenu(GLUT_LEFT_BUTTON);   //MIDDLE_BUTTON);
+    glutAttachMenu(GLUT_MIDDLE_BUTTON);
 }
 
 void menuAction(int msg)

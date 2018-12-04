@@ -5,10 +5,171 @@
 #include "prototypes.h"
 #include "constants.h"
 
-using namespace std;
+void mouse(int button, int state, int x, int y)
+{
+	extern float spinX;
+    extern float spinY;
+    extern float spinZ;
+	extern float deltaSpinX;
+	extern float deltaSpinY;
+	extern float deltaSpinZ;
+	extern int WINDOW_HEIGHT;
+	extern int WINDOW_WIDTH;
+	int newy;
+    int y2 = WINDOW_HEIGHT - y; 
+	
+	switch (button) {
+        case GLUT_RIGHT_BUTTON:
+            if (state == GLUT_DOWN)
+            { 
+                /*to find the center point of the screen*/
+				int centerx = WINDOW_WIDTH/2;//HEIGHT/2;
+				int centery = WINDOW_HEIGHT/2;//WIDTH/2;
+				/*find the slope of the line in quadrant 4*/
+				float m1 = ((centery - 0)/(centerx - 0));
+				/*substitute centerx and centery for y=mx+b, to solve for b*/
+				int b1 = centery - (m1 * centerx);	
+				/*slope for line in quadrant 3*/
+				float m2 = ((centery - 0)/(centerx - WINDOW_WIDTH));
+				/*substitute centerx and centery for y=mx+b, to solve for b*/
+                int b2 = centery - (m2 * centerx);
+				/*quadrant 1 -- rotate about Y*/
+				if((x < WINDOW_HEIGHT) && (y2 > centery) && (x < centerx))
+                {
+                    cout << "Quad 1: " <<x << "   " << y2 << endl;
+					deltaSpinY = deltaSpinY + 1.0;
+					//glutIdleFunc(spinDisplay);
+				}/*quadrant 2 -- rotate about X*/ 
+				else if((x < WINDOW_HEIGHT) && (y2 > centery) && (x > centerx))
+                {
+                    cout << "Quad 2: " << x << "   " << y2 << endl;
+					deltaSpinX = deltaSpinX + 1.0;
+					//glutIdleFunc(spinDisplay);
+				}/*quadrant 3 -- need to split into Z and X*/
+				else if((x < WINDOW_HEIGHT) && (y2 < centery) && (x > centerx))
+                {
+                    /*now we know the equation of the line -- can compare the x and y values to see if the point is on, below, or above the line*/
+					/*find y on line that corresponds to the x value from the click*/
+                    newy = (m2 * x) + b2;
+                    if(newy < y2) 
+                    {
+                        /*rotate about X*/
+						cout << "Quad 3 about X: " << x << "   " << y2 << endl;
+						deltaSpinX = deltaSpinX + 1.0;
+						//glutIdleFunc(spinDisplay);
+                    }
+                    else if(newy >= y2)
+                    {
+                        /*rotate about Z*/
+						cout << "Quad 3 about Z: " << x << "   " << y2 << endl;
+						deltaSpinZ = deltaSpinZ + 1.0;
+						//glutIdleFunc(spinDisplay);
+                    }
+                }/*quadrant 4 -- need to split into Z and Y*/ 
+				else if((x < WINDOW_HEIGHT) && (y2 < centery) && (x < centerx))
+                {
+                    /*find y on line that corresponds to the x value from the click*/
+					newy = (m1 * x) + b1;
+					if(newy < y2)
+					{
+						/*rotate about Y*/
+						cout << "Quad 4 about Y: " << x << "   " << y2 << endl;
+						deltaSpinY = deltaSpinY + 1.0;
+						glutIdleFunc(spinDisplay);
+					}
+					else if(newy >= y2)
+					{
+						/*rotate about Z*/
+						cout << "Quad 4 about Z: " << x << "   " << y2 << endl;
+						deltaSpinZ = deltaSpinZ + 1.0;
+						glutIdleFunc(spinDisplay);
+					}
+                }   				
+			}
+		case GLUT_LEFT_BUTTON:
+            if (state == GLUT_DOWN)
+            {
+                /*to find the center point of the screen*/
+                int centerx = WINDOW_WIDTH/2;//HEIGHT/2;
+                int centery = WINDOW_HEIGHT/2;//WIDTH/2;
+                /*find the slope of the line in quadrant 4*/
+                float m1 = ((centery - 0)/(centerx - 0));
+                /*substitute centerx and centery for y=mx+b, to solve for b*/
+                int b1 = centery - (m1 * centerx);
+                /*slope for line in quadrant 3*/
+                float m2 = ((centery - 0)/(centerx - WINDOW_WIDTH));
+                /*substitute centerx and centery for y=mx+b, to solve for b*/
+                int b2 = centery - (m2 * centerx);
+                /*quadrant 1 -- rotate about Y*/
+                if((x < WINDOW_HEIGHT) && (y2 > centery) && (x < centerx))
+                {
+                    cout << "Quad 1: " <<x << "   " << y2 << endl;
+                    deltaSpinY = deltaSpinY + 1.0;
+                    //glutIdleFunc(spinDisplay);
+                }/*quadrant 2 -- rotate about X*/
+                else if((x < WINDOW_HEIGHT) && (y2 > centery) && (x > centerx))
+                {
+                    cout << "Quad 2: " << x << "   " << y2 << endl;
+                    deltaSpinX = deltaSpinX + 1.0;
+                    //glutIdleFunc(spinDisplay);
+                }/*quadrant 3 -- need to split into Z and X*/
+				else if((x < WINDOW_HEIGHT) && (y2 < centery) && (x > centerx))
+                {
+                    /*now we know the equation of the line -- can compare the x and y values to see if the point is on, below, or above the line*/
+                    /*find y on line that corresponds to the x value from the click*/
+                    newy = (m2 * x) + b2;
+                    if(newy < y2)
+                    {
+                        /*rotate about X*/
+                        cout << "Quad 3 about X: " << x << "   " << y2 << endl;
+                        deltaSpinX = deltaSpinX + 1.0;
+                        //glutIdleFunc(spinDisplay);
+                    }
+                    else if(newy >= y2)
+                    {
+                        /*rotate about Z*/
+                        cout << "Quad 3 about Z: " << x << "   " << y2 << endl;
+                        deltaSpinZ = deltaSpinZ + 1.0;
+                        //glutIdleFunc(spinDisplay);
+                    }
+                }/*quadrant 4 -- need to split into Z and Y*/
+                else if((x < WINDOW_HEIGHT) && (y2 < centery) && (x < centerx))
+                {
+                    /*find y on line that corresponds to the x value from the click*/
+                    newy = (m1 * x) + b1;
+                    if(newy < y2)
+                    {
+                        /*rotate about Y*/
+                        cout << "Quad 4 about Y: " << x << "   " << y2 << endl;
+                        deltaSpinY = deltaSpinY + 1.0;
+                        //glutIdleFunc(spinDisplay);
+                    }
+                    else if(newy >= y2)
+                    {
+                        /*rotate about Z*/
+                        cout << "Quad 4 about Z: " << x << "   " << y2 << endl;
+                        deltaSpinZ = deltaSpinZ + 1.0;
+                        //glutIdleFunc(spinDisplay);
+                    }
+                }
+
+			}
+	}
+}
 
 void keyboard(unsigned char key, int x, int y)
 {
+	extern float spinX;
+    extern float spinY;
+    extern float spinZ;
+    extern float deltaSpinX;
+    extern float deltaSpinY;
+    extern float deltaSpinZ;
+	extern int DRAWAXIS;
+    extern int DRAWP;
+    extern int DRAWSIGN;
+    extern int DRAWFILL;
+
 	/*exits the program if q or Q is clicked*/
 	if(key == 'q' || key == 'Q') 
 	{
@@ -18,23 +179,22 @@ void keyboard(unsigned char key, int x, int y)
     if(key == 's' || key == 'S')
     {
         /*stop animation*/
+		spinX = 1.0;
+    	spinY = 1.0;
+    	spinZ = 1.0;
+    	deltaSpinX = 1.0;
+    	deltaSpinY = 1.0;
+    	deltaSpinZ = 1.0;
 		glutIdleFunc(display);
     }
 	/*return house to original state*/
     if(key == 'r')
     {
-        /*return house*/
-    }
-	/*camera moves closer to the house*/
-    if(key == GLUT_KEY_PAGE_UP)
-    {
-        /*the pageup key is 33*/
-		cout << "key code" << endl;
-    }
-	/*camera moves further away from the house*/
-	if(key == '4' || key == '3')
-    {
-        /*page down key is 34*/
+        DRAWAXIS = 0;
+        DRAWP = 0;
+        DRAWSIGN = 0;
+        DRAWFILL = 0;
+		
     }
 	/*return house and camera to original position*/
     if(key == 'R')
@@ -42,9 +202,19 @@ void keyboard(unsigned char key, int x, int y)
         /*return the original perspective as well*/
     }
 
-
-
-
 }
-
+/*got code from: http://www.lighthouse3d.com/tutorials/glut-tutorial/keyboard*/
+void processSpecialKeys(int key, int x, int y) 
+{
+	switch(key) {
+		/*camera moves closer to the house*/
+		case GLUT_KEY_PAGE_UP :
+				cout << "page up" << endl;
+				break;
+		/*camera moves further away from the house*/
+		case GLUT_KEY_PAGE_DOWN :
+				cout << "page down" << endl;
+				break;
+	}
+}
 #endif

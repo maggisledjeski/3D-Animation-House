@@ -11,15 +11,18 @@
 int main(int argc, char** argv)
 {
    glutInit(&argc, argv);
-   glutInitDisplayMode (GLUT_DEPTH | GLUT_SINGLE | GLUT_RGB);
+   glutInitDisplayMode (GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGB);
    glutInitWindowSize (WINDOW_HEIGHT, WINDOW_WIDTH); 
    glutInitWindowPosition (100, 100);
    glutCreateWindow (argv[0]);
    init ();
 	createMenu();
-   	glutKeyboardFunc(keyboard);
+   	glutMouseFunc(mouse);
+	glutSpecialFunc(processSpecialKeys);
+	glutKeyboardFunc(keyboard);
 	glutDisplayFunc(display); 
    glutReshapeFunc(reshape);	
+	glutIdleFunc(spinDisplay);
 	glutMainLoop();
    return 0;
 }
