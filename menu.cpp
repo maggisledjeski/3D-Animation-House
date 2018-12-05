@@ -15,10 +15,10 @@ void createMenu()
 
     /*perspective submenu*/
     int perspective = glutCreateMenu(onPerspective);
-    glutAddMenuEntry("glFrustum", 0);
-	glutAddMenuEntry("gluPerspective", 1);
-    glutAddMenuEntry("glOrtho", 2);
-    glutAddMenuEntry("custom", 3);
+    glutAddMenuEntry("glFrustum", 1);
+	glutAddMenuEntry("gluPerspective", 2);
+    glutAddMenuEntry("glOrtho", 3);
+    glutAddMenuEntry("custom", 4);
 
     /*sign submenu*/
     int sign = glutCreateMenu(onSign);
@@ -43,7 +43,19 @@ void createMenu()
 
 void menuAction(int msg)
 {
-    /*exits the program*/
+    extern int DRAWAXIS;
+    extern int DRAWP;
+    extern int DRAWSIGN;
+    extern int DRAWFILL;
+    extern float zoom;
+	extern float spinX;
+	extern float spinY;
+	extern float spinZ;
+	extern float deltaSpinX;
+	extern float deltaSpinY;
+	extern float deltaSpinZ;
+
+	/*exits the program*/
     if(msg == 0)
     {
         exit(0);
@@ -51,15 +63,17 @@ void menuAction(int msg)
     /*reverts to original house and camera*/
     if(msg == 1)
     {
-        extern int DRAWAXIS;
-		extern int DRAWP;
-		extern int DRAWSIGN;
-		extern int DRAWFILL;
-		
-		DRAWAXIS = 0;
+        DRAWAXIS = 0;
 		DRAWP = 0;
 		DRAWSIGN = 0;
 		DRAWFILL = 0;
+		spinX = 0.0;
+        spinY = 0.0;
+        spinZ = 0.0;
+        deltaSpinX = 0.0;
+        deltaSpinY = 0.0;
+        deltaSpinZ = 0.0;
+		zoom = 4.0;
     }
 }
 

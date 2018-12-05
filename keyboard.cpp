@@ -36,15 +36,16 @@ void mouse(int button, int state, int x, int y)
 				/*quadrant 1 -- rotate about Y*/
 				if((x < WINDOW_HEIGHT) && (y2 > centery) && (x < centerx))
                 {
-                    cout << "Quad 1: " <<x << "   " << y2 << endl;
+                    //cout << "Quad 1: " <<x << "   " << y2 << endl;
 					deltaSpinY = deltaSpinY + 1.0;
-					//glutIdleFunc(spinDisplay);
+					//cout << "spinY: " << spinY << "   " << "deltaSpinY: " << deltaSpinY << endl;
+					
 				}/*quadrant 2 -- rotate about X*/ 
 				else if((x < WINDOW_HEIGHT) && (y2 > centery) && (x > centerx))
                 {
                     cout << "Quad 2: " << x << "   " << y2 << endl;
 					deltaSpinX = deltaSpinX + 1.0;
-					//glutIdleFunc(spinDisplay);
+					
 				}/*quadrant 3 -- need to split into Z and X*/
 				else if((x < WINDOW_HEIGHT) && (y2 < centery) && (x > centerx))
                 {
@@ -56,14 +57,14 @@ void mouse(int button, int state, int x, int y)
                         /*rotate about X*/
 						cout << "Quad 3 about X: " << x << "   " << y2 << endl;
 						deltaSpinX = deltaSpinX + 1.0;
-						//glutIdleFunc(spinDisplay);
+						
                     }
                     else if(newy >= y2)
                     {
                         /*rotate about Z*/
 						cout << "Quad 3 about Z: " << x << "   " << y2 << endl;
 						deltaSpinZ = deltaSpinZ + 1.0;
-						//glutIdleFunc(spinDisplay);
+						
                     }
                 }/*quadrant 4 -- need to split into Z and Y*/ 
 				else if((x < WINDOW_HEIGHT) && (y2 < centery) && (x < centerx))
@@ -75,17 +76,18 @@ void mouse(int button, int state, int x, int y)
 						/*rotate about Y*/
 						cout << "Quad 4 about Y: " << x << "   " << y2 << endl;
 						deltaSpinY = deltaSpinY + 1.0;
-						glutIdleFunc(spinDisplay);
+						
 					}
 					else if(newy >= y2)
 					{
 						/*rotate about Z*/
 						cout << "Quad 4 about Z: " << x << "   " << y2 << endl;
 						deltaSpinZ = deltaSpinZ + 1.0;
-						glutIdleFunc(spinDisplay);
+						
 					}
                 }   				
 			}
+			break;
 		case GLUT_LEFT_BUTTON:
             if (state == GLUT_DOWN)
             {
@@ -103,15 +105,15 @@ void mouse(int button, int state, int x, int y)
                 /*quadrant 1 -- rotate about Y*/
                 if((x < WINDOW_HEIGHT) && (y2 > centery) && (x < centerx))
                 {
-                    cout << "Quad 1: " <<x << "   " << y2 << endl;
-                    deltaSpinY = deltaSpinY + 1.0;
-                    //glutIdleFunc(spinDisplay);
+                    deltaSpinY = deltaSpinY - 1.0;
+                    
+										
                 }/*quadrant 2 -- rotate about X*/
                 else if((x < WINDOW_HEIGHT) && (y2 > centery) && (x > centerx))
                 {
-                    cout << "Quad 2: " << x << "   " << y2 << endl;
-                    deltaSpinX = deltaSpinX + 1.0;
-                    //glutIdleFunc(spinDisplay);
+                    //cout << "Quad 2: " << x << "   " << y2 << endl;
+                    deltaSpinX = deltaSpinX - 1.0;
+                    
                 }/*quadrant 3 -- need to split into Z and X*/
 				else if((x < WINDOW_HEIGHT) && (y2 < centery) && (x > centerx))
                 {
@@ -121,16 +123,16 @@ void mouse(int button, int state, int x, int y)
                     if(newy < y2)
                     {
                         /*rotate about X*/
-                        cout << "Quad 3 about X: " << x << "   " << y2 << endl;
-                        deltaSpinX = deltaSpinX + 1.0;
-                        //glutIdleFunc(spinDisplay);
+                        //cout << "Quad 3 about X: " << x << "   " << y2 << endl;
+                        deltaSpinX = deltaSpinX - 1.0;
+                        
                     }
                     else if(newy >= y2)
                     {
                         /*rotate about Z*/
-                        cout << "Quad 3 about Z: " << x << "   " << y2 << endl;
-                        deltaSpinZ = deltaSpinZ + 1.0;
-                        //glutIdleFunc(spinDisplay);
+                        //cout << "Quad 3 about Z: " << x << "   " << y2 << endl;
+                        deltaSpinZ = deltaSpinZ - 1.0;
+                        
                     }
                 }/*quadrant 4 -- need to split into Z and Y*/
                 else if((x < WINDOW_HEIGHT) && (y2 < centery) && (x < centerx))
@@ -140,16 +142,16 @@ void mouse(int button, int state, int x, int y)
                     if(newy < y2)
                     {
                         /*rotate about Y*/
-                        cout << "Quad 4 about Y: " << x << "   " << y2 << endl;
-                        deltaSpinY = deltaSpinY + 1.0;
-                        //glutIdleFunc(spinDisplay);
+                        //cout << "Quad 4 about Y: " << x << "   " << y2 << endl;
+                        deltaSpinY = deltaSpinY - 1.0;
+                        
                     }
                     else if(newy >= y2)
                     {
                         /*rotate about Z*/
-                        cout << "Quad 4 about Z: " << x << "   " << y2 << endl;
-                        deltaSpinZ = deltaSpinZ + 1.0;
-                        //glutIdleFunc(spinDisplay);
+                        //cout << "Quad 4 about Z: " << x << "   " << y2 << endl;
+                        deltaSpinZ = deltaSpinZ - 1.0;
+                        
                     }
                 }
 
@@ -169,6 +171,7 @@ void keyboard(unsigned char key, int x, int y)
     extern int DRAWP;
     extern int DRAWSIGN;
     extern int DRAWFILL;
+	extern float zoom;
 
 	/*exits the program if q or Q is clicked*/
 	if(key == 'q' || key == 'Q') 
@@ -179,13 +182,10 @@ void keyboard(unsigned char key, int x, int y)
     if(key == 's' || key == 'S')
     {
         /*stop animation*/
-		spinX = 1.0;
-    	spinY = 1.0;
-    	spinZ = 1.0;
-    	deltaSpinX = 1.0;
-    	deltaSpinY = 1.0;
-    	deltaSpinZ = 1.0;
-		glutIdleFunc(display);
+    	deltaSpinX = 0.0;
+    	deltaSpinY = 0.0;
+    	deltaSpinZ = 0.0;
+		
     }
 	/*return house to original state*/
     if(key == 'r')
@@ -194,26 +194,48 @@ void keyboard(unsigned char key, int x, int y)
         DRAWP = 0;
         DRAWSIGN = 0;
         DRAWFILL = 0;
-		
+		spinX = 0.0;
+        spinY = 0.0;
+        spinZ = 0.0;
+		deltaSpinX = 0.0;
+        deltaSpinY = 0.0;
+        deltaSpinZ = 0.0;		
     }
 	/*return house and camera to original position*/
     if(key == 'R')
     {
         /*return the original perspective as well*/
+		cout << "R" << endl;
+		DRAWAXIS = 0;
+        DRAWP = 0;
+        DRAWSIGN = 0;
+        DRAWFILL = 0;
+		spinX = 0.0;
+        spinY = 0.0;
+        spinZ = 0.0;
+        deltaSpinX = 0.0;
+        deltaSpinY = 0.0;
+        deltaSpinZ = 0.0;
+		zoom = 4.0;
     }
 
 }
+
 /*got code from: http://www.lighthouse3d.com/tutorials/glut-tutorial/keyboard*/
 void processSpecialKeys(int key, int x, int y) 
 {
+	extern float zoom;
+
 	switch(key) {
 		/*camera moves closer to the house*/
 		case GLUT_KEY_PAGE_UP :
 				cout << "page up" << endl;
+				zoom = zoom - 1.0;
 				break;
 		/*camera moves further away from the house*/
 		case GLUT_KEY_PAGE_DOWN :
 				cout << "page down" << endl;
+				zoom = zoom + 1.0;
 				break;
 	}
 }

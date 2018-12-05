@@ -12,7 +12,9 @@ void display(void)
 	extern int DRAWAXIS;
 	extern int DRAWSIGN;
 	extern int DRAWFILL;
-   struct box faces[7];
+   	extern float zoom;
+	
+	struct box faces[7];
 	extern float spinX, spinY, spinZ;   
 
 
@@ -28,9 +30,11 @@ void display(void)
    glMatrixMode(GL_MODELVIEW);
    glLoadIdentity ();             /* clear the matrix */
 
-	gluLookAt (4.0, 4.0, 4.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0);
-
-   /* Draw a coordinate axis */
+	//gluLookAt (4.0, 4.0, 4.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0);
+	//gluLookAt (5.0, 5.0, 4.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0);
+	//gluLookAt (4.0, zoom, 4.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0);
+   gluLookAt (zoom, zoom, zoom, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0);
+	/* Draw a coordinate axis */
 	glEnable(GL_DEPTH_TEST);
    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -141,16 +145,16 @@ void spinDisplay(void)
 	extern float deltaSpinZ;
 
 	spinX = spinX + deltaSpinX;
-	if(spinX > 360.0)
+/*	if(spinX > 360.0)
 	{
 		spinX = spinX - 360.0;
 	}
-	spinY = spinY + deltaSpinY;
-    if(spinY > 360.0)
+*/	spinY = spinY + deltaSpinY;
+/*    if(spinY > 360.0)
     {
         spinY = spinY - 360.0;
     }
-	spinZ = spinZ + deltaSpinZ;
+*/	spinZ = spinZ + deltaSpinZ;
     if(spinZ > 360.0)
     {
         spinZ = spinZ - 360.0;
