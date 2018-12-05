@@ -38,14 +38,19 @@ void display(void)
 	glEnable(GL_DEPTH_TEST);
    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+	if(DRAWAXIS)
+    {
+         drawAxes(5);
+    }
+
 	glRotatef(spinX, 1.0, 0.0, 0.0);
 	glRotatef(spinY, 0.0, 1.0, 0.0);
 	glRotatef(spinZ, 0.0, 0.0, 1.0);
    /*draw menu items*/
-	if(DRAWAXIS)
+/*	if(DRAWAXIS)
 	{
 		 drawAxes(5);
-	}
+	}*/
 	if(DRAWSIGN)
 	{
 		drawSign();

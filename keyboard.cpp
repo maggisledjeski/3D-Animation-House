@@ -43,7 +43,7 @@ void mouse(int button, int state, int x, int y)
 				}/*quadrant 2 -- rotate about X*/ 
 				else if((x < WINDOW_HEIGHT) && (y2 > centery) && (x > centerx))
                 {
-                    cout << "Quad 2: " << x << "   " << y2 << endl;
+                    //cout << "Quad 2: " << x << "   " << y2 << endl;
 					deltaSpinX = deltaSpinX + 1.0;
 					
 				}/*quadrant 3 -- need to split into Z and X*/
@@ -55,14 +55,14 @@ void mouse(int button, int state, int x, int y)
                     if(newy < y2) 
                     {
                         /*rotate about X*/
-						cout << "Quad 3 about X: " << x << "   " << y2 << endl;
+						//cout << "Quad 3 about X: " << x << "   " << y2 << endl;
 						deltaSpinX = deltaSpinX + 1.0;
 						
                     }
                     else if(newy >= y2)
                     {
                         /*rotate about Z*/
-						cout << "Quad 3 about Z: " << x << "   " << y2 << endl;
+						//cout << "Quad 3 about Z: " << x << "   " << y2 << endl;
 						deltaSpinZ = deltaSpinZ + 1.0;
 						
                     }
@@ -74,14 +74,14 @@ void mouse(int button, int state, int x, int y)
 					if(newy < y2)
 					{
 						/*rotate about Y*/
-						cout << "Quad 4 about Y: " << x << "   " << y2 << endl;
+						//cout << "Quad 4 about Y: " << x << "   " << y2 << endl;
 						deltaSpinY = deltaSpinY + 1.0;
 						
 					}
 					else if(newy >= y2)
 					{
 						/*rotate about Z*/
-						cout << "Quad 4 about Z: " << x << "   " << y2 << endl;
+						//cout << "Quad 4 about Z: " << x << "   " << y2 << endl;
 						deltaSpinZ = deltaSpinZ + 1.0;
 						
 					}
@@ -221,7 +221,7 @@ void keyboard(unsigned char key, int x, int y)
 
 }
 
-/*got code from: http://www.lighthouse3d.com/tutorials/glut-tutorial/keyboard*/
+/*how to process the special keys*/
 void processSpecialKeys(int key, int x, int y) 
 {
 	extern float zoom;
@@ -229,12 +229,10 @@ void processSpecialKeys(int key, int x, int y)
 	switch(key) {
 		/*camera moves closer to the house*/
 		case GLUT_KEY_PAGE_UP :
-				cout << "page up" << endl;
 				zoom = zoom - 1.0;
 				break;
 		/*camera moves further away from the house*/
 		case GLUT_KEY_PAGE_DOWN :
-				cout << "page down" << endl;
 				zoom = zoom + 1.0;
 				break;
 	}
