@@ -16,20 +16,20 @@ void drawAxes(int length)
 	/*font*/
 	void *font = GLUT_STROKE_ROMAN;
 
-/* This provides a coordinate axis about the origin. */
-   glPointSize(1.0);
-   glBegin(GL_LINES);
-     glVertex3i(0,length,0);
-     glVertex3i(0,-length,0);
-   glEnd();
-   glBegin(GL_LINES);
-     glVertex3i(length,0,0);
-     glVertex3i(-length,0,0);
-   glEnd();
-   glBegin(GL_LINES);
-     glVertex3i(0,0,length);
-     glVertex3i(0,0,-length);
-   glEnd();
+	/*This provides a coordinate axis about the origin. */
+   	glPointSize(1.0);
+   	glBegin(GL_LINES);
+    glVertex3i(0,length,0);
+    glVertex3i(0,-length,0);
+   	glEnd();
+   	glBegin(GL_LINES);
+    glVertex3i(length,0,0);
+    glVertex3i(-length,0,0);
+   	glEnd();
+   	glBegin(GL_LINES);
+    glVertex3i(0,0,length);
+    glVertex3i(0,0,-length);
+   	glEnd();
 
 	/*add the lettering to the axis*/
 	/*Z*/
@@ -59,8 +59,8 @@ void drawAxes(int length)
 	/*X*/
 	glPushMatrix();
     glTranslatef(4.0, 0.0, -.4);
-    glRotatef(90.0, 0.0, 0.0, 1.0);
-    glRotatef(90.0, 0.0, 1.0, 0.0);
+    glRotatef(120.0, 0.0, 0.0, 1.0);
+    glRotatef(70.0, 0.0, 1.0, 0.0);
     glScalef(0.002,0.002,0.002);
     len = (int) strlen(xaxis);
     for (i = 0; i < len; i++) {

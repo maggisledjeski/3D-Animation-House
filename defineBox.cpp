@@ -126,7 +126,7 @@ void defineBox( box *face )
 
 /*want to change point 1 + 2*/
 	face[5].point[0].x = -1.0;  // Top 
-    face[5].point[0].y = -1.0;	//back left corner
+    face[5].point[0].y = -1.0;	
 	face[5].point[0].z =  1.0;
 	face[5].point[0].w =  1.0;
 

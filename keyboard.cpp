@@ -23,8 +23,8 @@ void mouse(int button, int state, int x, int y)
             if (state == GLUT_DOWN)
             { 
                 /*to find the center point of the screen*/
-				int centerx = WINDOW_WIDTH/2;//HEIGHT/2;
-				int centery = WINDOW_HEIGHT/2;//WIDTH/2;
+				int centerx = WINDOW_WIDTH/2;
+				int centery = WINDOW_HEIGHT/2;
 				/*find the slope of the line in quadrant 4*/
 				float m1 = ((centery - 0)/(centerx - 0));
 				/*substitute centerx and centery for y=mx+b, to solve for b*/
@@ -36,15 +36,12 @@ void mouse(int button, int state, int x, int y)
 				/*quadrant 1 -- rotate about Y*/
 				if((x < WINDOW_HEIGHT) && (y2 > centery) && (x < centerx))
                 {
-                    //cout << "Quad 1: " <<x << "   " << y2 << endl;
-					deltaSpinY = deltaSpinY + 1.0;
-					//cout << "spinY: " << spinY << "   " << "deltaSpinY: " << deltaSpinY << endl;
+                    deltaSpinY = deltaSpinY + 1.0;
 					
 				}/*quadrant 2 -- rotate about X*/ 
 				else if((x < WINDOW_HEIGHT) && (y2 > centery) && (x > centerx))
                 {
-                    //cout << "Quad 2: " << x << "   " << y2 << endl;
-					deltaSpinX = deltaSpinX + 1.0;
+                    deltaSpinX = deltaSpinX + 1.0;
 					
 				}/*quadrant 3 -- need to split into Z and X*/
 				else if((x < WINDOW_HEIGHT) && (y2 < centery) && (x > centerx))
@@ -55,16 +52,12 @@ void mouse(int button, int state, int x, int y)
                     if(newy < y2) 
                     {
                         /*rotate about X*/
-						//cout << "Quad 3 about X: " << x << "   " << y2 << endl;
 						deltaSpinX = deltaSpinX + 1.0;
-						
                     }
                     else if(newy >= y2)
                     {
                         /*rotate about Z*/
-						//cout << "Quad 3 about Z: " << x << "   " << y2 << endl;
 						deltaSpinZ = deltaSpinZ + 1.0;
-						
                     }
                 }/*quadrant 4 -- need to split into Z and Y*/ 
 				else if((x < WINDOW_HEIGHT) && (y2 < centery) && (x < centerx))
@@ -74,16 +67,12 @@ void mouse(int button, int state, int x, int y)
 					if(newy < y2)
 					{
 						/*rotate about Y*/
-						//cout << "Quad 4 about Y: " << x << "   " << y2 << endl;
 						deltaSpinY = deltaSpinY + 1.0;
-						
 					}
 					else if(newy >= y2)
 					{
 						/*rotate about Z*/
-						//cout << "Quad 4 about Z: " << x << "   " << y2 << endl;
 						deltaSpinZ = deltaSpinZ + 1.0;
-						
 					}
                 }   				
 			}
@@ -92,8 +81,8 @@ void mouse(int button, int state, int x, int y)
             if (state == GLUT_DOWN)
             {
                 /*to find the center point of the screen*/
-                int centerx = WINDOW_WIDTH/2;//HEIGHT/2;
-                int centery = WINDOW_HEIGHT/2;//WIDTH/2;
+                int centerx = WINDOW_WIDTH/2;
+                int centery = WINDOW_HEIGHT/2;
                 /*find the slope of the line in quadrant 4*/
                 float m1 = ((centery - 0)/(centerx - 0));
                 /*substitute centerx and centery for y=mx+b, to solve for b*/
@@ -106,14 +95,11 @@ void mouse(int button, int state, int x, int y)
                 if((x < WINDOW_HEIGHT) && (y2 > centery) && (x < centerx))
                 {
                     deltaSpinY = deltaSpinY - 1.0;
-                    
-										
+                    										
                 }/*quadrant 2 -- rotate about X*/
                 else if((x < WINDOW_HEIGHT) && (y2 > centery) && (x > centerx))
                 {
-                    //cout << "Quad 2: " << x << "   " << y2 << endl;
                     deltaSpinX = deltaSpinX - 1.0;
-                    
                 }/*quadrant 3 -- need to split into Z and X*/
 				else if((x < WINDOW_HEIGHT) && (y2 < centery) && (x > centerx))
                 {
@@ -123,16 +109,12 @@ void mouse(int button, int state, int x, int y)
                     if(newy < y2)
                     {
                         /*rotate about X*/
-                        //cout << "Quad 3 about X: " << x << "   " << y2 << endl;
                         deltaSpinX = deltaSpinX - 1.0;
-                        
                     }
                     else if(newy >= y2)
                     {
                         /*rotate about Z*/
-                        //cout << "Quad 3 about Z: " << x << "   " << y2 << endl;
                         deltaSpinZ = deltaSpinZ - 1.0;
-                        
                     }
                 }/*quadrant 4 -- need to split into Z and Y*/
                 else if((x < WINDOW_HEIGHT) && (y2 < centery) && (x < centerx))
@@ -142,16 +124,12 @@ void mouse(int button, int state, int x, int y)
                     if(newy < y2)
                     {
                         /*rotate about Y*/
-                        //cout << "Quad 4 about Y: " << x << "   " << y2 << endl;
                         deltaSpinY = deltaSpinY - 1.0;
-                        
                     }
                     else if(newy >= y2)
                     {
                         /*rotate about Z*/
-                        //cout << "Quad 4 about Z: " << x << "   " << y2 << endl;
                         deltaSpinZ = deltaSpinZ - 1.0;
-                        
                     }
                 }
 
@@ -229,11 +207,17 @@ void processSpecialKeys(int key, int x, int y)
 	switch(key) {
 		/*camera moves closer to the house*/
 		case GLUT_KEY_PAGE_UP :
-				zoom = zoom - 1.0;
+				if(zoom > 2.0)
+				{
+					zoom = zoom - 1.0;
+				}
 				break;
 		/*camera moves further away from the house*/
 		case GLUT_KEY_PAGE_DOWN :
-				zoom = zoom + 1.0;
+				if(zoom < 10.0)
+				{
+					zoom = zoom + 1.0;
+				}
 				break;
 	}
 }

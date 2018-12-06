@@ -1,7 +1,7 @@
 CC = g++
 CFLAGS = -O
 LDLIBS =  -lglut -lGL -lGLU -lm
-HEADERS = includes.h structs.h globals.h constants.h prototypes.h
+HEADERS = includes.h structs.h globals.h prototypes.h
 OBJS = init.o defineBox.o drawBox.o drawAxes.o reshape.o display.o keyboard.o menu.o
 
 run :	main.o $(OBJS) 

@@ -4,53 +4,48 @@
 #include <stdio.h>
 #include "includes.h"
 #include "structs.h"
-//#include "globals.h"
 #include "prototypes.h"
 
 void display(void)
 {
+	extern int WINDOW_HEIGHT;
+	extern int WINDOW_WIDTH;
 	extern int DRAWAXIS;
 	extern int DRAWSIGN;
 	extern int DRAWFILL;
-   	extern float zoom;
+   	extern int DRAWP;
+	extern float zoom;
 	
 	struct box faces[7];
 	extern float spinX, spinY, spinZ;   
 
+   	float *M;
+   	int i, j; 
 
-   float *M;
-   int i, j;
-   
+   	defineBox(&faces[0]);
 
-   defineBox(&faces[0]);
+   	glClear (GL_COLOR_BUFFER_BIT);
+   	glColor3f (1.0, 1.0, 1.0);
 
-   glClear (GL_COLOR_BUFFER_BIT);
-   glColor3f (1.0, 1.0, 1.0);
+   	glMatrixMode(GL_MODELVIEW);
+   	glLoadIdentity ();             /* clear the matrix */
 
-   glMatrixMode(GL_MODELVIEW);
-   glLoadIdentity ();             /* clear the matrix */
-
-	//gluLookAt (4.0, 4.0, 4.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0);
-	//gluLookAt (5.0, 5.0, 4.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0);
-	//gluLookAt (4.0, zoom, 4.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0);
-   gluLookAt (zoom, zoom, zoom, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0);
+   	gluLookAt (zoom, zoom, zoom, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0);
+	
 	/* Draw a coordinate axis */
 	glEnable(GL_DEPTH_TEST);
-   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+   	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	if(DRAWAXIS)
     {
          drawAxes(5);
     }
-
+	
 	glRotatef(spinX, 1.0, 0.0, 0.0);
 	glRotatef(spinY, 0.0, 1.0, 0.0);
 	glRotatef(spinZ, 0.0, 0.0, 1.0);
-   /*draw menu items*/
-/*	if(DRAWAXIS)
-	{
-		 drawAxes(5);
-	}*/
+   	
+	/*draw menu items*/
 	if(DRAWSIGN)
 	{
 		drawSign();
@@ -62,8 +57,12 @@ void display(void)
 	{
 		drawBox(&faces[0]);
 	}
-
-    glFlush();
+	if(DRAWP > 0)
+	{
+		reshape(WINDOW_HEIGHT, WINDOW_WIDTH);
+    }
+	
+	glFlush();
 	glutSwapBuffers();
 }
 		
@@ -123,7 +122,6 @@ void drawFill(struct box *face)
     glTranslatef(0.0,0.0,0.0);
 
     glPopMatrix();
-
 }
 
 void onSign(int msg)
@@ -150,16 +148,16 @@ void spinDisplay(void)
 	extern float deltaSpinZ;
 
 	spinX = spinX + deltaSpinX;
-/*	if(spinX > 360.0)
+	if(spinX > 360.0)
 	{
 		spinX = spinX - 360.0;
 	}
-*/	spinY = spinY + deltaSpinY;
-/*    if(spinY > 360.0)
+	spinY = spinY + deltaSpinY;
+    if(spinY > 360.0)
     {
         spinY = spinY - 360.0;
     }
-*/	spinZ = spinZ + deltaSpinZ;
+	spinZ = spinZ + deltaSpinZ;
     if(spinZ > 360.0)
     {
         spinZ = spinZ - 360.0;
